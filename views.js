@@ -175,4 +175,10 @@ module.exports = function(router, model){
 			msg: 'Logout success'
 		}
 	})
+
+	router.get('/api/status', function*(){
+		this.body = {
+			logined: this.session.logined ? this.session.logined : false,
+		}
+	})
 }
