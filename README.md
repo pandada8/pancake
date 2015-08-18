@@ -2,7 +2,7 @@
 
 A Simple blog used in http://blog.pandada8.me
 
-the blog is built with `webpack`, `vue.js`, `koa.js` and use `sqlite` as data storage
+the blog is built with `webpack`, `vue.js`, `koa.js` and use `postgresql` as data storage
 
 # depoly
 
