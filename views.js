@@ -16,8 +16,10 @@ module.exports = function(router, model, parser){
 	})
 
 
+
 	router.post('/api/auth', parser, function* admin_user_auth(next){
 		var self = this
+
 		if (this.request.body && this.request.body.name && this.request.body.password){
 			yield model.Users.findOne({
 				where: {
@@ -25,10 +27,16 @@ module.exports = function(router, model, parser){
 				}
 			}).then(function(user){
 				if(user){
-					self.body = user
+					self.session.logined = Date.now()
+					self.sessionOptions.maxAge = 86400 * 10 * 1000  // ten days
+					self.body = {
+						err: 0,
+						msg: "Logined success"
+					}
 				}else{
 					self.body = {
-						'msg': "You Bad Bad. Something happened"
+						err: 1,
+						msg: "You Bad Bad. Something happened"
 					}
 					self.status = 403;
 				}
