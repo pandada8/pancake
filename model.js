@@ -1,10 +1,11 @@
 var Sequelize = require('sequelize')
 var crypto = require('crypto')
 var config = require('./config')
+var prompt = require('prompt')
 
 function randomStr(length){
     length = length == undefined ? 10 : length;
-    return Math.round(Math.random()*Math.Ppow(36, length)).toString(36);
+    return Math.round(Math.random()*Math.pow(36, length)).toString(36);
 }
 
 function encrypt(password, salt){
@@ -50,7 +51,7 @@ var Users = sequelize.define('Users', {
             var salt = randomStr(20)
             var password = encrypt(password, salt)
             this.setDataValue("password", password)
-            this.setDateValue("salt", salt)
+            this.setDataValue("salt", salt)
         },
         type: Sequelize.STRING
     },
@@ -65,6 +66,15 @@ module.exports = {
     "init": function(){
         sequelize.sync().then(function(){
             console.log('Finish init the datebase')
+            prompt.start()
+            prompt.get(['name', 'email', 'password'], function(err, result){
+                if(result.name && result.email && result.password){
+                    Users.build(result).save().then(function(){
+                        console.log('Create the admin user successfully')
+                    })
+                }
+            })
+
         })
     }
 }

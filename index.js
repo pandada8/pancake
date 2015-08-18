@@ -3,7 +3,6 @@ var process = require('process')
 if (process.argv.length == 3 && process.argv[2] == 'init'){
     var model = require('./model');
     model.init()
-    process.exit(0)
 }else{
     var koa = require('koa')
     var logger = require("koa-logger")
