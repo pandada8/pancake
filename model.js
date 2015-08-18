@@ -35,7 +35,7 @@ var Posts = sequelize.define('Post', {
 })
 
 var Uploaded = sequelize.define('Uploaded', {
-    path: Sequelize.STRING,
+    name: Sequelize.STRING,
     size: Sequelize.INTEGER,
     mime: {
         type: Sequelize.STRING,

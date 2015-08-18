@@ -3,3 +3,5 @@ db:
     username: blog
     password: blog
     host: localhost
+upload:
+    path: "/home/www/upload"
