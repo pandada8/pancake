@@ -141,7 +141,6 @@ module.exports = function(router, model){
 				data: datas
 			}
 		});
-
 	})
 
 	router.post('/api/auth', koaBody(), function* admin_user_auth(next){
@@ -166,6 +165,14 @@ module.exports = function(router, model){
 			})
 		}else{
 			this.status = 400
+		}
+	})
+
+	router.get('/api/logout', function*(){
+		this.session = null
+		this.body = {
+			err: 0,
+			msg: 'Logout success'
 		}
 	})
 }
