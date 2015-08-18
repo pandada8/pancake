@@ -1,0 +1,5 @@
+db:
+    name: blog
+    username: blog
+    password: blog
+    host: localhost
