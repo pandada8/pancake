@@ -35,7 +35,7 @@ module.exports = function(router, model){
 		var page = parseInt(this.query.page)
 		var self = this
 		page = page > 0 ? page : 1
-		yield model.Posts.findOne({
+		yield model.Posts.findAll({
 			where: {
 				published: {
 					$ne: null
